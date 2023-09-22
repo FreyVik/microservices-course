@@ -1,1 +1,9 @@
 test git alias.
+
+alias.s=status
+alias.ac=!git add -A && git commit -m
+alias.pu=push -u
+alias.p=push
+alias.lodag=log --oneline --decorate --all --graph
+alias.c=commit -m
+alias.acp=!f() { git add -A && git commit -m "$1" && git push; }; f
