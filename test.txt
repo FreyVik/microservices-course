@@ -1,0 +1,8 @@
+
+git config --global alias.s 'status'
+git config --global alias.ac '!git add -A && git commit -m'
+git config --global alias.pu 'push -u'
+git config --global alias.p 'push'
+git config --global alias.lodag 'log --oneline --decorate --all --graph'
+git config --global alias.c 'commit -m'
+git config --global alias.acp '!f() { git add -A && git commit -m "$1" && git push; }; f'
