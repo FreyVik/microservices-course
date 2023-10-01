@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface AgendaDao {
 
-    void AddContact(ContactEntity contact);
+    void addContact(ContactEntity contact);
 
     ContactEntity getContactByEmail(String email);
 

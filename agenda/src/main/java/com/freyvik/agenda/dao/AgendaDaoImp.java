@@ -17,7 +17,7 @@ public class AgendaDaoImp implements AgendaDao {
     }
 
     @Override
-    public void AddContact(ContactEntity contact) {
+    public void addContact(ContactEntity contact) {
         agendaJpa.save(contact);
     }
 

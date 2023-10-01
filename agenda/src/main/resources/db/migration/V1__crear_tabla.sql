@@ -23,11 +23,11 @@ DROP TABLE IF EXISTS `contactos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contactos` (
-  `idContacto` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_contacto` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
   `edad` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`idContacto`)
+  PRIMARY KEY (`id_contacto`)
 ) ENGINE=InnoDB AUTO_INCREMENT=519 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
