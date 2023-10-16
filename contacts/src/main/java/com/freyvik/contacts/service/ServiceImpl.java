@@ -25,6 +25,14 @@ public class ServiceImpl implements AgendaService {
 
     @Override
     public List<Contact> getAllContacts() {
+        try {
+            System.out.println("Getting all contacts");
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("All contacts found");
         return agendaDao.findAll();
     }
 
