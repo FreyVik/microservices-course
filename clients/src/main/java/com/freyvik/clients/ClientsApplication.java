@@ -20,14 +20,7 @@ public class ClientsApplication {
 
 	@Bean
 	public RestTemplate template() {
-
-		BasicAuthenticationInterceptor interceptor;
-		interceptor = new BasicAuthenticationInterceptor("admin", "admin");
-
-		RestTemplate restTemplate = new RestTemplate();
-		restTemplate.getInterceptors().add(interceptor);
-
-		return restTemplate;
+		return new RestTemplate();
 	}
 
 	@Bean
