@@ -4,7 +4,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -20,6 +22,14 @@ import java.util.List;
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
+
+    AuthenticationManager auth;
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
+        auth = configuration.getAuthenticationManager();
+        return auth;
+    }
 
     /*
     @Bean
@@ -69,7 +79,8 @@ public class SecurityConfig {
                                 .requestMatchers("/contacts").authenticated()
                                 .anyRequest().permitAll()
                         )
-                .httpBasic(Customizer.withDefaults());
+//                .httpBasic(Customizer.withDefaults());
+                .addFilter(new JWTAuthorizationFilter(auth));
 
         return httpSecurity.build();
     }
