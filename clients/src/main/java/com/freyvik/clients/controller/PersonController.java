@@ -29,6 +29,7 @@ public class PersonController {
 
         CompletableFuture<List<Person>> result = accessService.asyncReleasePerson(newPerson);
 
+        /*
         for (int i = 0; i < 50; i ++) {
             System.out.println("Waiting...");
             try {
@@ -36,7 +37,7 @@ public class PersonController {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-        }
+        }*/
 
         try {
             return result.get();

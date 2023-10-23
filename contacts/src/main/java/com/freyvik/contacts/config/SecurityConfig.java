@@ -1,5 +1,6 @@
 package com.freyvik.contacts.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -10,6 +11,7 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,7 +25,10 @@ import java.util.List;
 @Configuration
 public class SecurityConfig {
 
-    AuthenticationManager auth;
+    @Autowired
+    private JwtAuthConverter jwtAuthConverter;
+
+     AuthenticationManager auth;
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
@@ -53,6 +58,9 @@ public class SecurityConfig {
     }
      */
 
+    // Users definition
+
+    /*
     @Bean
     public JdbcUserDetailsManager usersDetailsJDBC() {
         DriverManagerDataSource ds = new DriverManagerDataSource();
@@ -69,6 +77,7 @@ public class SecurityConfig {
 
         return jdbcDetails;
     }
+    */
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
@@ -80,14 +89,21 @@ public class SecurityConfig {
                                 .anyRequest().permitAll()
                         )
 //                .httpBasic(Customizer.withDefaults());
-                .addFilter(new JWTAuthorizationFilter(auth));
+//                .addFilter(new JWTAuthorizationFilter(auth));
+                .oauth2ResourceServer(oauth2ResourceServer ->
+                        oauth2ResourceServer.jwt(jwt ->
+                                jwt.jwtAuthenticationConverter(jwtAuthConverter)))
+                .sessionManagement(sessionManagement ->
+                        sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         return httpSecurity.build();
     }
 
     // Passwords encrypted wth BCrypt
+    /*
     @Bean
     public BCryptPasswordEncoder encoder() {
         return new BCryptPasswordEncoder();
     }
+     */
 }
