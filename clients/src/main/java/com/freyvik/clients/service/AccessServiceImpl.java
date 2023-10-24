@@ -24,7 +24,9 @@ public class AccessServiceImpl implements AccessService {
     @Autowired
     RestTemplate restTemplate;
 
-    private static final String SERVICE_URL = "http://localhost:8500";
+    // No Eureka
+    // private static final String SERVICE_URL = "http://localhost:8500";
+    private static final String SERVICE_URL = "http://contacts-service";
     private static final String KEYCLOAK_URL = "http://localhost:8080/realms/ContactsRealm/protocol/openid-connect/token";
     final String USERNAME = "admin";
     final String PASSWORD = "admin";

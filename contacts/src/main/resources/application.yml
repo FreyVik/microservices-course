@@ -1,6 +1,8 @@
 server:
   port: 8500
 spring:
+  application:
+    name: contacts-service
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://localhost:3306/agenda?serviceTimezone=UTC
@@ -17,5 +19,9 @@ spring:
         jwt:
           issuer-uri: http://localhost:8080/realms/ContactsRealm
           jwk-set-uri: http://localhost:8080/realms/ContactsRealm/protocol/openid-connect/certs
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
 keycloak:
   clientId: login
